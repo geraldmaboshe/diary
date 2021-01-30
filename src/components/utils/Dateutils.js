@@ -42,9 +42,9 @@ const calculateFirstDayOfTheYear = (y, M = 0, k = 1) => {
   return T % 7;
 };
 
-export const generateDateGrid = () => {
+export const generateDateGrid = activeMonth => {
   const dateGrid = Array.from({ length: WEEKSINAYEAR }, _ =>
-    Array.from({ length: DAYSINAWEEK }, _ => [1])
+    Array.from({ length: DAYSINAWEEK }, _ => [1, false])
   );
   const startDayOfTheYear = calculateFirstDayOfTheYear(DATE.getFullYear());
 
@@ -58,6 +58,7 @@ export const generateDateGrid = () => {
   for (let i = 0; i < MONTHSINAYEAR; i++) {
     for (let j = 0; j < DAYSINAMONTH[i]; j++) {
       dateGrid[weekvalue][k][0] = j + 1;
+      dateGrid[weekvalue][k][1] = activeMonth;
       k++;
       if (k === DAYSINAWEEK) {
         k = 0;

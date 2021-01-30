@@ -27,7 +27,31 @@
           display: flex;
           align-items: center;
         }
+        .active {
+          background: red;
+          text-align: center;
+          border-radius: 20px;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .month {
+          height: 28px;
+          display: flex;
+          align-items: center;
+        }
+        .month-active {
+          padding: 0 4px;
+        }
       }
+    }
+    .sunday {
+      background: #f5f5f5;
+    }
+    .active-month {
+      transition: color 0.3s ease-in;
+      color: black;
     }
   }
 }

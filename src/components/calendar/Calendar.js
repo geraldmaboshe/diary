@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DAYSINAWEEK, WEEKSINAYEAR } from '../utils/Constants';
 import { generateDateGrid } from '../utils/Dateutils';
 import Date from './Date';
 import Month from './Month';
 import './calendar.scss';
 
-function Calendar() {
-  const dateGrid = generateDateGrid();
+function Calendar({ activeMonth, setActiveMonth }) {
+  //const [monthInViewport, setmonthInViewport] = useState(2);
+  //setActiveMonth(monthInViewport);
+
+  const dateGrid = generateDateGrid(activeMonth);
   const firstDayInAMonth = [];
   const weekRowValue = [];
 
@@ -21,6 +24,7 @@ function Calendar() {
           value={dateGrid[weekindex][dayindex][0]}
           day={dayindex}
           month={firstDayInAMonth.length}
+          active={dateGrid[weekindex][dayindex][1]}
         />
       );
     }
@@ -32,7 +36,11 @@ function Calendar() {
     .fill(1)
     .map((val, index) => {
       if (index && index === firstDayInAMonth[currentMonth]) {
-        const monthValue = <Month mid={currentMonth - 1}>{monthrow}</Month>;
+        const monthValue = (
+          <Month mid={currentMonth - 1} onVisible={setActiveMonth}>
+            {monthrow}
+          </Month>
+        );
         currentMonth++;
         monthrow = [weekRowValue[index]];
         return monthValue;

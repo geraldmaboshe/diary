@@ -16,7 +16,7 @@ export const MONTH = [
   'November',
   'December'
 ];
-export const WEEKSINAYEAR = 54;
+export const WEEKSINAYEAR = 55;
 export const MONTHSINAYEAR = 12;
 export const DAYSINAWEEK = 7;
 export const DAYSINAMONTH = getMonthsInAYear(DATE.getFullYear());
