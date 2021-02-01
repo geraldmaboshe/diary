@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import './App.scss';
-import { DATE, MONTH, WEEK } from './utils/Constants';
+import './home.scss';
+import { MONTH, WEEK } from '../utils/Constants';
 import Day from './Day';
 import Calendar from './calendar/Calendar';
 import { payload } from '../payload';

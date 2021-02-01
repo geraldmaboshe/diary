@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { DAYSINAWEEK, WEEKSINAYEAR } from '../utils/Constants';
-import { generateDateGrid } from '../utils/DateUtils';
+import { DAYSINAWEEK, WEEKSINAYEAR } from '../../utils/Constants';
+import { generateDateGrid } from '../../utils/DateUtils';
 import Date from './Date';
 import Month from './Month';
 import './calendar.scss';

@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.scss';
+import './home.scss';
 const Day = props => {
   return (
     <div className="day">

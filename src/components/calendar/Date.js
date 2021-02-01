@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DATE, MONTH } from '../utils/Constants';
+import { DATE, MONTH } from '../../utils/Constants';
 import moment from 'moment';
 import './calendar.scss';
 import Modal from '../Modal';
