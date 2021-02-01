@@ -4,4 +4,4 @@
 
 ## Preview
 
-- click on the localhost url below to preview
+- Open http://localhost:3000 to view it in the browser.
