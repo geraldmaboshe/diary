@@ -4,6 +4,7 @@ import { MONTH, WEEK } from './utils/Constants';
 import Day from './components/Day';
 import Calendar from './components/calendar/Calendar';
 import { payload } from './payload';
+import axios from 'axios';
 
 function App() {
   const [activeMonth, setactiveMonth] = useState(0);
@@ -27,16 +28,63 @@ function App() {
     //   setloading(false);
     // }
     // fetchData();
-    fetch('http://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    })
-      .then(response => response.json())
-      .then(data => {
-        setitems(data);
+    // let body = JSON.stringify(payload);
+    axios
+      .post('http://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph', {
+        // method: 'POST',
+        // headers: {
+        //   'Content-Type': 'application/json'
+        // },
+        //body: JSON.stringify(payload)
+        requestobjects: [
+          {
+            posts: {
+              operationtype: 'read',
+              id: {
+                return: true
+              },
+              userid: {
+                searchvalues: ['41329663-5834-11eb-8e6e-3ca82abc3dd4'],
+                return: true
+              },
+              iscalendarentry: {
+                searchvalues: ['true'],
+                return: true
+              },
+              images: {
+                return: true
+              },
+              rating: {
+                return: true
+              },
+              text: {
+                return: true
+              },
+              privacy: {
+                searchvalues: [18],
+                return: true
+              },
+              typeofday: {
+                return: true
+              },
+
+              // Don't change anything above ^^
+              //editable variables start below //
+
+              calendardatetime: {
+                // Date Time of a particular post
+                return: true, // please note: there can be multiple posts on a single day
+                sort: 'descending' // you can sort fetched dates by ascending/descending.
+              },
+              maxitemcount: '20', //you can ask between 1 to 50 posts (max) at a time.
+              continuationtoken: null //replace with the continuation token from response to get the next set
+            }
+          }
+        ]
+      })
+      .then(response => {
+        console.log(response.data);
+        setitems(response.data);
         setloading(false);
       })
       .catch(error => console.log(error.message));
