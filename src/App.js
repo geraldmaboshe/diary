@@ -29,6 +29,7 @@ function App() {
     // fetchData();
     fetch('http://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json'
       },
