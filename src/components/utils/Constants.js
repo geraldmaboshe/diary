@@ -1,4 +1,4 @@
-import { getMonthsInAYear } from './Dateutils';
+import { getMonthsInAYear } from './DateUtils';
 import moment from 'moment';
 
 export const DATE = new Date();

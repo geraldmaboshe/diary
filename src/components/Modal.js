@@ -1,11 +1,9 @@
-import { useState } from 'react';
 import './modal.scss';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 import Rating from './Rating';
 import moment from 'moment';
 
-const Modal = ({ handleClose, show, item, children }) => {
-  const [readMore, setReadMore] = useState(false);
+const Modal = ({ handleClose, show, item }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
