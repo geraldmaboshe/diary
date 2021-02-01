@@ -5,47 +5,45 @@ import Date from './Date';
 import Month from './Month';
 import './calendar.scss';
 
-function Calendar({ activeMonth, setActiveMonth }) {
-  //const [monthInViewport, setmonthInViewport] = useState(2);
-  //setActiveMonth(monthInViewport);
-
+function Calendar({ activeMonth, setActiveMonth, items }) {
   const dateGrid = generateDateGrid(activeMonth);
   const firstDayInAMonth = [];
   const weekRowValue = [];
 
-  for (let weekindex = 0; weekindex < WEEKSINAYEAR; weekindex++) {
+  for (let weekIndex = 0; weekIndex < WEEKSINAYEAR; weekIndex++) {
     let weekRow = [];
-    for (let dayindex = 0; dayindex < DAYSINAWEEK; dayindex++) {
-      if (dateGrid[weekindex][dayindex][0] === 1) {
-        firstDayInAMonth.push(weekindex);
+    for (let dayIndex = 0; dayIndex < DAYSINAWEEK; dayIndex++) {
+      if (dateGrid[weekIndex][dayIndex][0] === 1) {
+        firstDayInAMonth.push(weekIndex);
       }
       weekRow.push(
         <Date
-          value={dateGrid[weekindex][dayindex][0]}
-          day={dayindex}
+          value={dateGrid[weekIndex][dayIndex][0]}
+          day={dayIndex}
           month={firstDayInAMonth.length}
-          active={dateGrid[weekindex][dayindex][1]}
+          active={dateGrid[weekIndex][dayIndex][1]}
+          items={items}
         />
       );
     }
     weekRowValue.push(<div className="week">{weekRow}</div>);
   }
   let currentMonth = 1,
-    monthrow = [];
+    monthRowItems = [];
   const monthRow = Array(WEEKSINAYEAR)
     .fill(1)
     .map((val, index) => {
       if (index && index === firstDayInAMonth[currentMonth]) {
         const monthValue = (
           <Month mid={currentMonth - 1} onVisible={setActiveMonth}>
-            {monthrow}
+            {monthRowItems}
           </Month>
         );
         currentMonth++;
-        monthrow = [weekRowValue[index]];
+        monthRowItems = [weekRowValue[index]];
         return monthValue;
       } else {
-        monthrow.push(weekRowValue[index]);
+        monthRowItems.push(weekRowValue[index]);
       }
     });
   return monthRow;

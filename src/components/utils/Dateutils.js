@@ -46,10 +46,10 @@ export const generateDateGrid = activeMonth => {
   const dateGrid = Array.from({ length: WEEKSINAYEAR }, _ =>
     Array.from({ length: DAYSINAWEEK }, _ => [1, false])
   );
-  const startDayOfTheYear = calculateFirstDayOfTheYear(DATE.getFullYear());
+  const startDayOfTheYear = calculateFirstDayOfTheYear(2020);
 
   for (let i = 0; i < startDayOfTheYear; i++) {
-    dateGrid[0][i][0] = DAYSINAMONTH[11] - (startDayOfTheYear - 1) + 1;
+    dateGrid[0][i][0] = DAYSINAMONTH[11] - (startDayOfTheYear - 1) + i;
   }
 
   let weekvalue = 0,
@@ -58,7 +58,7 @@ export const generateDateGrid = activeMonth => {
   for (let i = 0; i < MONTHSINAYEAR; i++) {
     for (let j = 0; j < DAYSINAMONTH[i]; j++) {
       dateGrid[weekvalue][k][0] = j + 1;
-      dateGrid[weekvalue][k][1] = activeMonth;
+      dateGrid[weekvalue][k][1] = i === activeMonth;
       k++;
       if (k === DAYSINAWEEK) {
         k = 0;
