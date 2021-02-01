@@ -1,7 +1,10 @@
 # Diary App
 
-A vertical social network around beauty.
+- A vertical social network around beauty
 
-### Preview App
+## How to run
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- clone the respository
+- `cd diary`
+- `npm install` to install dependencies
+- `npm start` to view it in the browser.
