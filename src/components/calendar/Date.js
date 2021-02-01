@@ -36,56 +36,82 @@ const Date = ({ value, day, month, active, items }) => {
       className={`date ${!day ? 'sunday' : ''} ${active ? 'active-month' : ''}`}
     >
       <div className="date-box">
-        <div>
+        <div className="box-header">
           {items.responseobjects[0].posts.map(post =>
             moment(post.calendardatetime).format('l') == actual ? (
-              <>
-                <Rating
-                  color="#add8e6"
-                  rating={post.rating}
-                  spacing="3px"
-                  dimension="15px"
-                />
-                <div onClick={showModal}>
-                  <img
-                    src={post.images[0].imageurl}
-                    alt="tile"
-                    className="calendar-tile-image"
-                  />
-                  {post.typeofday.map(type => (
-                    <span className="legend">
-                      {type === 'protein treatment'
-                        ? 'Pr'
-                        : type === 'deep conditioning'
-                        ? 'DC'
-                        : type === 'hair color'
-                        ? 'HC'
-                        : type === 'hair cut'
-                        ? 'Cu'
-                        : type === 'clarifying'
-                        ? 'Cu'
-                        : ''}
-                    </span>
-                  ))}
-                </div>
-                <Modal show={show} handleClose={hideModal} item={post} />
-              </>
+              <Rating
+                color="#add8e6"
+                rating={5}
+                spacing="3px"
+                dimension="15px"
+              />
             ) : null
           )}
+          <div></div>
+          <div className={`text ${dateStyle ? 'active' : ''}`}>{value}</div>
+
+          {value === 1 ? (
+            <div
+              className={`month ${
+                DATE.getMonth() === month - 1 ? 'month-active' : ''
+              }`}
+            >
+              {MONTH[month - 1] == undefined
+                ? ''
+                : MONTH[month - 1].substr(0, 3)}
+            </div>
+          ) : null}
         </div>
-        <span className={`text ${dateStyle ? 'active' : ''}`}>{value}</span>
-        {value === 1 ? (
-          <div
-            className={`month ${
-              DATE.getMonth() === month - 1 ? 'month-active' : ''
-            }`}
-          >
-            {MONTH[month - 1] == undefined ? '' : MONTH[month - 1].substr(0, 3)}
-          </div>
-        ) : null}
+        {items.responseobjects[0].posts.map(post =>
+          moment(post.calendardatetime).format('l') == actual ? (
+            <>
+              <div className="box-header"></div>
+              <div>
+                <img
+                  src={post.images[0].imageurl}
+                  alt="tile"
+                  className="calendar-tile-image"
+                />
+              </div>
+            </>
+          ) : null
+        )}
       </div>
     </div>
   );
 };
 
+{
+  /* <div>
+  {items.responseobjects[0].posts.map(post =>
+    moment(post.calendardatetime).format('l') == actual ? (
+      <>
+        <div onClick={showModal}>
+          <img
+            src={post.images[0].imageurl}
+            alt="tile"
+            className="calendar-tile-image"
+          />
+          {post.typeofday.map(type => (
+            <span className="legend">
+              {type === 'protein treatment'
+                ? 'Pr'
+                : type === 'deep conditioning'
+                ? 'DC'
+                : type === 'hair color'
+                ? 'HC'
+                : type === 'hair cut'
+                ? 'Cu'
+                : type === 'clarifying'
+                ? 'Cu'
+                : ''}
+            </span>
+          ))}
+        </div>
+        <Modal show={show} handleClose={hideModal} item={post} />
+      </>
+    ) : null
+  )}
+</div>; */
+}
 export default Date;
