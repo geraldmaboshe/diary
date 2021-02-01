@@ -20,7 +20,7 @@ const Date = ({ value, day, month, active, items }) => {
   if (value === DATE.getDate() && month > 0) {
     if (
       (value === 1 && month - 1 === DATE.getMonth()) ||
-      (value !== 1 && month - 1 == DATE.getMonth())
+      (value !== 1 && month - 1 === DATE.getMonth())
     ) {
       dateStyle = true;
     }
@@ -42,8 +42,8 @@ const Date = ({ value, day, month, active, items }) => {
               <Rating
                 color="#add8e6"
                 rating={5}
-                spacing="3px"
-                dimension="15px"
+                spacing="2px"
+                dimension="14px"
               />
             ) : null
           )}
@@ -56,7 +56,7 @@ const Date = ({ value, day, month, active, items }) => {
                 DATE.getMonth() === month - 1 ? 'month-active' : ''
               }`}
             >
-              {MONTH[month - 1] == undefined
+              {MONTH[month - 1] === undefined
                 ? ''
                 : MONTH[month - 1].substr(0, 3)}
             </div>
@@ -66,13 +66,31 @@ const Date = ({ value, day, month, active, items }) => {
           moment(post.calendardatetime).format('l') == actual ? (
             <>
               <div className="box-header"></div>
-              <div>
+              <div onClick={showModal}>
                 <img
                   src={post.images[0].imageurl}
                   alt="tile"
                   className="calendar-tile-image"
                 />
+                <div className="legend-wrapper">
+                  {post.typeofday.map(type => (
+                    <span className="legend">
+                      {type === 'protein treatment'
+                        ? 'Pr'
+                        : type === 'deep conditioning'
+                        ? 'DC'
+                        : type === 'hair color'
+                        ? 'HC'
+                        : type === 'hair cut'
+                        ? 'Cu'
+                        : type === 'clarifying'
+                        ? 'Cu'
+                        : ''}
+                    </span>
+                  ))}
+                </div>
               </div>
+              <Modal show={show} handleClose={hideModal} item={post} />
             </>
           ) : null
         )}
@@ -81,37 +99,4 @@ const Date = ({ value, day, month, active, items }) => {
   );
 };
 
-{
-  /* <div>
-  {items.responseobjects[0].posts.map(post =>
-    moment(post.calendardatetime).format('l') == actual ? (
-      <>
-        <div onClick={showModal}>
-          <img
-            src={post.images[0].imageurl}
-            alt="tile"
-            className="calendar-tile-image"
-          />
-          {post.typeofday.map(type => (
-            <span className="legend">
-              {type === 'protein treatment'
-                ? 'Pr'
-                : type === 'deep conditioning'
-                ? 'DC'
-                : type === 'hair color'
-                ? 'HC'
-                : type === 'hair cut'
-                ? 'Cu'
-                : type === 'clarifying'
-                ? 'Cu'
-                : ''}
-            </span>
-          ))}
-        </div>
-        <Modal show={show} handleClose={hideModal} item={post} />
-      </>
-    ) : null
-  )}
-</div>; */
-}
 export default Date;

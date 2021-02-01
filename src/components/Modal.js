@@ -17,12 +17,11 @@ const Modal = ({ handleClose, show, item, children }) => {
           </button>
         </div>
 
+        <div>
+          <FaArrowAltCircleLeft />
+        </div>
         <div className="container">
-          <div>
-            <FaArrowAltCircleLeft />
-          </div>
-
-          <div>2</div>
+          <div>Prev</div>
 
           <div className="active-tile">
             <div className="image-wrapper">
@@ -66,11 +65,10 @@ const Modal = ({ handleClose, show, item, children }) => {
               </div>
             </div>
           </div>
-
-          <div>4</div>
-          <div>
-            <FaArrowAltCircleRight />
-          </div>
+          <div>Next</div>
+        </div>
+        <div>
+          <FaArrowAltCircleRight />
         </div>
       </section>
     </div>
