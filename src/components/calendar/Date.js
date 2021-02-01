@@ -25,10 +25,6 @@ const Date = ({ value, day, month, active, items }) => {
       dateStyle = true;
     }
   }
-  console.log(month + '/' + value + '/2020');
-  console.log(
-    moment(items.responseobjects[0].posts[0].calendardatetime).format('l')
-  );
 
   let actual = month + '/' + value + '/2020';
   return (

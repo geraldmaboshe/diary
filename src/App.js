@@ -29,7 +29,34 @@ function App() {
     fetchData();
   }, [items]);
 
-  return <h1>Hello world</h1>;
+  return (
+    <>
+      {!loading ? (
+        <>
+          <nav className="nav">
+            <h1 className="h1">
+              {MONTH[activeMonth]} <span className="span">{2020}</span>
+              <button>Today</button>
+            </h1>
+            <div className="row">
+              {WEEK.map(week => (
+                <Day day={week} />
+              ))}
+            </div>
+          </nav>
+          <div className="wrapper">
+            <Calendar
+              setActiveMonth={setactiveMonth}
+              activeMonth={activeMonth}
+              items={items}
+            />
+          </div>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </>
+  );
 }
 
 export default App;
