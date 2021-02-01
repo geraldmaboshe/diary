@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { DAYSINAWEEK, WEEKSINAYEAR } from '../../utils/Constants';
 import { generateDateGrid } from '../../utils/DateUtils';
 import Date from './Date';
