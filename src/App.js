@@ -27,7 +27,7 @@ function App() {
       setloading(false);
     }
     fetchData();
-  }, []);
+  }, [items]);
 
   return (
     <>
