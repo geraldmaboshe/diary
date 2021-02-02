@@ -31,27 +31,62 @@
 }
 .container > div {
   overflow: auto;
+  margin: 10px;
+
+  // box-shadow: 1px 9px 13px -4px rgba(0, 0, 0, 0.75);
+  // -webkit-box-shadow: 1px 9px 13px -4px rgba(0, 0, 0, 0.75);
+  // -moz-box-shadow: 1px 9px 13px -4px rgba(0, 0, 0, 0.75);
+}
+.prev-arrow {
+  align-self: center;
+  border-radius: 20%;
+}
+.next-arrow {
+  align-self: center;
+  border-radius: 20%;
+}
+.arrow-btn {
+  background-color: #b19cd9;
+  border-style: none;
+}
+.prev-tile {
+  width: 240px;
+  height: 450px;
+  align-self: center;
   background: #ffffff;
-  width: 300px;
-  height: 500px;
-  box-shadow: 1px 9px 13px -4px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 1px 9px 13px -4px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 1px 9px 13px -4px rgba(0, 0, 0, 0.75);
 }
 .active-tile {
-  flex-shrink: 0;
+  width: 300px;
+  height: 500px;
+  background: #ffffff;
+}
+.next-tile {
+  align-self: center;
+  width: 240px;
+  height: 450px;
+  background: #ffffff;
 }
 
-.image-wrapper {
-  padding: 0;
-  margin: 0;
-  .tile-image {
-    object-fit: cover;
-    width: 100%;
-    min-height: 380px;
-  }
+.prev-tile-image {
+  object-fit: cover;
+  width: 100%;
+  min-height: 340px;
 }
+.active-tile-image {
+  object-fit: cover;
+  width: 100%;
+  min-height: 380px;
+}
+.next-tile-image {
+  object-fit: cover;
+  width: 100%;
+  min-height: 340px;
+}
+
 .content {
+  margin: 10px;
+}
+.prev-content {
   margin: 10px;
 }
 .btn-wrapper {
@@ -63,20 +98,38 @@
     padding: 5px;
   }
 }
-
+.prev-dateTime {
+  font-size: 12px;
+  font-weight: 900;
+  padding: 15px 0 3px 0;
+}
 .dateTime {
   font-size: 13px;
   font-weight: 900;
   padding: 20px 0 5px 0;
 }
+
+.prev-description {
+  font-size: 12px;
+}
 .description {
   font-size: 13px;
+}
+.next-description {
+  font-size: 12px;
 }
 .tile-legend {
   background: cadetblue;
   font-size: 12px;
   border-radius: 50%;
   padding: 8px;
+  display: inline-block;
+}
+.prev-tile-legend {
+  background: cadetblue;
+  font-size: 10px;
+  border-radius: 50%;
+  padding: 6px;
   display: inline-block;
 }
 .legend-rating-wrapper {

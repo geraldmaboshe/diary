@@ -1,11 +1,27 @@
+import React, { useState } from 'react';
 import './modal.scss';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { GoArrowSmallRight, GoArrowSmallLeft } from 'react-icons/go';
 import Rating from './Rating';
 import moment from 'moment';
 
-const Modal = ({ handleClose, show, item }) => {
+const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
-
+  const [active, setActive] = useState(item);
+  const [newIndex, setNewIndex] = useState(selectedIndex);
+  const nextTile = () => {
+    if (items.responseobjects[0].posts[newIndex - 2] != undefined) {
+      setActive(items.responseobjects[0].posts[newIndex - 1]);
+      setNewIndex(newIndex - 1);
+    }
+    return;
+  };
+  const prevTile = () => {
+    if (items.responseobjects[0].posts[newIndex + 2] != undefined) {
+      setActive(items.responseobjects[0].posts[newIndex + 1]);
+      setNewIndex(newIndex + 1);
+    }
+    return;
+  };
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
@@ -14,24 +30,77 @@ const Modal = ({ handleClose, show, item }) => {
             X
           </button>
         </div>
-
-        <div>
-          <FaArrowAltCircleLeft />
-        </div>
         <div className="container">
-          <div>Prev</div>
+          <div className="prev-arrow">
+            <button className="arrow-btn" onClick={prevTile}>
+              <GoArrowSmallLeft size={30} color="red" color="#ffffff" />
+            </button>
+          </div>
+          <div className="prev-tile">
+            {items.responseobjects[0].posts[newIndex + 1]?.images[0]
+              .imageurl ? (
+              <img
+                src={
+                  items.responseobjects[0].posts[newIndex + 1]?.images[0]
+                    .imageurl
+                }
+                alt="previous tile"
+                className="prev-tile-image"
+              />
+            ) : (
+              <p>You have no previous posts</p>
+            )}
+            <div classname="prev-content">
+              <div className="legend-rating-wrapper">
+                {items.responseobjects[0].posts[newIndex + 1]?.typeofday.map(
+                  type => (
+                    <span className="prev-tile-legend">
+                      {type === 'protein treatment'
+                        ? 'Pr'
+                        : type === 'deep conditioning'
+                        ? 'DC'
+                        : type === 'hair color'
+                        ? 'HC'
+                        : type === 'hair cut'
+                        ? 'Cu'
+                        : type === 'clarifying'
+                        ? 'Cu'
+                        : ''}
+                    </span>
+                  )
+                )}
+                <div>
+                  <Rating
+                    color="#add8e6"
+                    rating={active.rating}
+                    spacing="2px"
+                    dimension="13px"
+                  />
+                </div>
+              </div>
+              <div>
+                <p className="prev-dateTime">
+                  {moment(
+                    items.responseobjects[0].posts[newIndex + 1]
+                      ?.calendardatetime
+                  ).format('Do MMM YYYY')}
+                </p>
+                <p className="prev-description">
+                  {items.responseobjects[0].posts[newIndex + 1]?.text}
+                </p>
+              </div>
+            </div>
+          </div>
 
           <div className="active-tile">
-            <div className="image-wrapper">
-              <img
-                src={item.images[0].imageurl}
-                alt="tile"
-                className="tile-image"
-              />
-            </div>
+            <img
+              src={active.images[0].imageurl}
+              alt="tile"
+              className="active-tile-image"
+            />
             <div className="content">
               <div className="legend-rating-wrapper">
-                {item.typeofday.map(type => (
+                {active.typeofday.map(type => (
                   <span className="tile-legend">
                     {type === 'protein treatment'
                       ? 'Pr'
@@ -49,7 +118,7 @@ const Modal = ({ handleClose, show, item }) => {
                 <div>
                   <Rating
                     color="#add8e6"
-                    rating={item.rating}
+                    rating={active.rating}
                     spacing="3px"
                     dimension="15px"
                   />
@@ -57,16 +126,32 @@ const Modal = ({ handleClose, show, item }) => {
               </div>
               <div>
                 <p className="dateTime">
-                  {moment(item.calendardatetime).format('Do MMM YYYY')}
+                  {moment(active.calendardatetime).format('Do MMM YYYY')}
                 </p>
-                <p className="description">{item.text}</p>
+                <p className="description">{active.text}</p>
               </div>
             </div>
           </div>
-          <div>Next</div>
-        </div>
-        <div>
-          <FaArrowAltCircleRight />
+          <div className="next-tile">
+            {items.responseobjects[0].posts[newIndex - 1]?.images[0]
+              .imageurl ? (
+              <img
+                src={
+                  items.responseobjects[0].posts[newIndex - 1]?.images[0]
+                    .imageurl
+                }
+                className="next-tile-image"
+                alt="next tile"
+              />
+            ) : (
+              <p>You have no next posts</p>
+            )}
+          </div>
+          <div className="next-arrow">
+            <button className="arrow-btn" onClick={nextTile}>
+              <GoArrowSmallRight size={30} color="#ffffff" />
+            </button>
+          </div>
         </div>
       </section>
     </div>

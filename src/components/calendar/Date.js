@@ -7,6 +7,7 @@ import Rating from '../Rating';
 
 const Date = ({ value, day, month, active, items }) => {
   const [show, setshow] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const showModal = () => {
     setshow(true);
@@ -26,7 +27,7 @@ const Date = ({ value, day, month, active, items }) => {
     }
   }
 
-  let actual = month + '/' + value + '/2020';
+  let actual = `${month}/${value}/2020`;
   return (
     <div
       className={`date ${!day ? 'sunday' : ''} ${active ? 'active-month' : ''}`}
@@ -45,7 +46,6 @@ const Date = ({ value, day, month, active, items }) => {
           )}
           <div></div>
           <div className={`text ${dateStyle ? 'active' : ''}`}>{value}</div>
-
           {value === 1 ? (
             <div
               className={`month ${
@@ -58,7 +58,7 @@ const Date = ({ value, day, month, active, items }) => {
             </div>
           ) : null}
         </div>
-        {items.responseobjects[0].posts.map(post =>
+        {items.responseobjects[0].posts.map((post, selectedIndex) =>
           moment(post.calendardatetime).format('l') == actual ? (
             <>
               <div className="box-header"></div>
@@ -68,9 +68,9 @@ const Date = ({ value, day, month, active, items }) => {
                   alt="tile"
                   className="calendar-tile-image"
                 />
-                <div className="legend-wrapper">
+                <div className="legend">
                   {post.typeofday.map(type => (
-                    <span className="legend">
+                    <div className={type}>
                       {type === 'protein treatment'
                         ? 'Pr'
                         : type === 'deep conditioning'
@@ -80,13 +80,19 @@ const Date = ({ value, day, month, active, items }) => {
                         : type === 'hair cut'
                         ? 'Cu'
                         : type === 'clarifying'
-                        ? 'Cu'
-                        : ''}
-                    </span>
+                        ? 'C'
+                        : null}
+                    </div>
                   ))}
                 </div>
               </div>
-              <Modal show={show} handleClose={hideModal} item={post} />
+              <Modal
+                show={show}
+                handleClose={hideModal}
+                item={post}
+                items={items}
+                selectedIndex={selectedIndex}
+              />
             </>
           ) : null
         )}
