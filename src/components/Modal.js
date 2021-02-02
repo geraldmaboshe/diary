@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './modal.scss';
 import { GoArrowSmallRight, GoArrowSmallLeft } from 'react-icons/go';
-import Rating from './Rating';
 import moment from 'moment';
 import StarRating from './StarRating';
 
