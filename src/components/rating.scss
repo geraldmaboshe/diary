@@ -1,0 +1,9 @@
+.star {
+  display: inline-block;
+}
+
+.inactive,
+.active {
+  background: transparent;
+  user-select: none;
+}

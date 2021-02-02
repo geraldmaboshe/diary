@@ -4,6 +4,7 @@ import moment from 'moment';
 import './calendar.scss';
 import Modal from '../Modal';
 import Rating from '../Rating';
+import StarRating from '../StarRating';
 
 const Date = ({ value, day, month, active, items }) => {
   const [show, setshow] = useState(false);
@@ -36,12 +37,13 @@ const Date = ({ value, day, month, active, items }) => {
         <div className="box-header">
           {items.responseobjects[0].posts.map(post =>
             moment(post.calendardatetime).format('l') == actual ? (
-              <Rating
-                color="#add8e6"
-                rating={5}
-                spacing="2px"
-                dimension="14px"
-              />
+              // <Rating
+              //   color="#add8e6"
+              //   rating={5}
+              //   spacing="2px"
+              //   dimension="14px"
+              // />
+              <StarRating value={post.rating} size={20} />
             ) : null
           )}
           <div></div>

@@ -13,10 +13,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .post(
-        'http://quinncareapi-dev.us-east-2.elasticbeanstalk.com/graph',
-        payload
-      )
+      .post('https://devapi.quinn.care/graph', payload)
       .then(response => {
         console.log(response.data);
         setitems(response.data);
@@ -32,7 +29,7 @@ function App() {
           <nav className="nav">
             <h1 className="h1">
               {MONTH[activeMonth]} <span className="span">{2020}</span>
-              <button>Today</button>
+              {/* <button>Today</button> */}
             </h1>
             <div className="row">
               {WEEK.map(week => (
