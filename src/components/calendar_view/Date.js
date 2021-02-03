@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { DATE, MONTH } from '../../utils/Constants';
 import moment from 'moment';
-import './calendar.scss';
-import Modal from '../Modal';
-import StarRating from '../StarRating';
+import './index.scss';
+import Modal from '../extended_view/Modal';
+import StarRating from '../core/Rating';
 
 const Date = ({ value, day, month, active, items }) => {
   const [show, setshow] = useState(false);
@@ -27,15 +27,20 @@ const Date = ({ value, day, month, active, items }) => {
   }
 
   let actual = `${month}/${value}/2020`;
+
   return (
     <div
       className={`date ${!day ? 'sunday' : ''} ${active ? 'active-month' : ''}`}
     >
       <div className="date-box">
         <div className="box-header">
-          {items.responseobjects[0].posts.map(post =>
-            moment(post.calendardatetime).format('l') == actual ? (
-              <StarRating value={post.rating} size={20} />
+          {items.responseobjects[0].posts.map((post, index) =>
+            moment(post.calendardatetime).format('l') == actual &&
+            moment(post.calendardatetime).format('l') !==
+              moment(
+                items.responseobjects[0].posts[index + 1]?.calendardatetime
+              ).format('l') ? (
+              <StarRating value={post?.rating} size={15} />
             ) : null
           )}
           <div></div>
@@ -52,8 +57,12 @@ const Date = ({ value, day, month, active, items }) => {
             </div>
           ) : null}
         </div>
-        {items.responseobjects[0].posts.map((post, selectedIndex) =>
-          moment(post.calendardatetime).format('l') == actual ? (
+        {items.responseobjects[0].posts.map((post, index) =>
+          moment(post.calendardatetime).format('l') == actual &&
+          moment(post.calendardatetime).format('l') !==
+            moment(
+              items.responseobjects[0].posts[index + 1]?.calendardatetime
+            ).format('l') ? (
             <>
               <div className="box-header"></div>
               <div onClick={showModal}>
@@ -85,7 +94,7 @@ const Date = ({ value, day, month, active, items }) => {
                 handleClose={hideModal}
                 item={post}
                 items={items}
-                selectedIndex={selectedIndex}
+                selectedIndex={index}
               />
             </>
           ) : null

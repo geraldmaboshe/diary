@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.scss';
 import { MONTH, WEEK } from './utils/Constants';
-import Day from './components/Day';
-import Calendar from './components/calendar/Calendar';
-import { payload } from './payload';
+import Day from './components/calendar_view/Day';
+import Calendar from './components/calendar_view/Calendar';
+import { payload } from './utils/Payload';
 import axios from 'axios';
 
-function App() {
+const App = () => {
   const [activeMonth, setactiveMonth] = useState(0);
   const [items, setitems] = useState([]);
   const [loading, setloading] = useState(true);
@@ -15,7 +15,6 @@ function App() {
     axios
       .post('https://devapi.quinn.care/graph', payload)
       .then(response => {
-        console.log(response.data);
         setitems(response.data);
         setloading(false);
       })
@@ -29,7 +28,6 @@ function App() {
           <nav className="nav">
             <h1 className="h1">
               {MONTH[activeMonth]} <span className="span">{2020}</span>
-              {/* <button>Today</button> */}
             </h1>
             <div className="row">
               {WEEK.map(week => (
@@ -50,6 +48,6 @@ function App() {
       )}
     </>
   );
-}
+};
 
 export default App;

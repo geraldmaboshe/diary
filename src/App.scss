@@ -15,15 +15,6 @@
     display: flex;
     border-bottom: 1px solid #c7c7c7;
     height: 24px;
-    .day {
-      flex: 1;
-      justify-content: flex-end;
-      display: flex;
-      padding-right: 10px;
-      .light {
-        color: #8e8e8e;
-      }
-    }
   }
 }
 .wrapper {
@@ -35,13 +26,11 @@
   scroll-snap-type: proximity;
   scroll-snap-type: y proximity;
 }
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: Verdana, sans-serif;
   line-height: 1.4;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { DAYSINAWEEK, WEEKSINAYEAR } from '../../utils/Constants';
-import { generateDateGrid } from '../../utils/DateUtils';
+import { generateDateGrid } from '../../utils';
 import Date from './Date';
 import Month from './Month';
-import './calendar.scss';
+import './index.scss';
 
-function Calendar({ activeMonth, setActiveMonth, items }) {
+const Calendar = ({ activeMonth, setActiveMonth, items }) => {
   const dateGrid = generateDateGrid(activeMonth);
   const firstDayInAMonth = [];
   const weekRowValue = [];
@@ -47,6 +47,6 @@ function Calendar({ activeMonth, setActiveMonth, items }) {
       }
     });
   return monthRow;
-}
+};
 
 export default Calendar;

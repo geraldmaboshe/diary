@@ -1,9 +1,10 @@
 import React from 'react';
-import '../App.scss';
+import './index.scss';
+
 const Day = props => {
   return (
     <div className="day">
-      <span className="title">{props.day}</span>
+      <span>{props.day}</span>
     </div>
   );
 };
