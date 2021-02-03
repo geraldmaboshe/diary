@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './modal.scss';
 import { GoArrowSmallRight, GoArrowSmallLeft } from 'react-icons/go';
 import moment from 'moment';
@@ -8,6 +8,13 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
   const [active, setActive] = useState(item);
   const [newIndex, setNewIndex] = useState(selectedIndex);
+
+  useEffect(() => {
+    if (!show) {
+      setNewIndex(selectedIndex);
+      setActive(item);
+    }
+  });
 
   const nextTile = () => {
     if (items.responseobjects[0].posts[newIndex - 2] != undefined) {
@@ -19,7 +26,7 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
 
   const prevTile = () => {
     if (items.responseobjects[0].posts[newIndex + 2] != undefined) {
-      setActive(items.responseobjects[0].posts[newIndex + 1]);
+      setActive(items.responseobjects[0].posts[selectedIndex + 1]);
       setNewIndex(newIndex + 1);
     }
     return;
@@ -128,10 +135,7 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
                   ))}
                 </div>
                 <div className="col2">
-                  <StarRating
-                    value={items.responseobjects[0].posts[newIndex + 1]?.rating}
-                    size={20}
-                  />
+                  <StarRating value={active.rating} size={20} />
                 </div>
               </div>
               <div>
