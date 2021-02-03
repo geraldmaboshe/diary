@@ -13,7 +13,6 @@
       border-bottom: 1px solid #e6e5e6;
       padding: 2px 0 0 0;
       box-sizing: border-box;
-
       &:last-child {
         border-right: 0;
       }
@@ -25,6 +24,7 @@
           justify-content: flex-end;
           display: flex;
           align-items: center;
+          padding-right: 3px;
         }
         .active {
           background: red;
@@ -34,11 +34,14 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          margin-right: 2px;
         }
         .month {
           height: 28px;
           display: flex;
           align-items: center;
+          padding-right: 3px;
+          padding-left: 5px;
         }
         .month-active {
           padding: 2px 4px;
@@ -59,35 +62,35 @@
             background: #add8e6;
             border-radius: 50%;
             padding: 3px;
-            width: 25px;
+            width: 24px;
             text-align: center;
           }
           .deep.conditioning {
             background: #add8e6;
             border-radius: 50%;
             padding: 3px;
-            width: 25px;
+            width: 24px;
           }
           .hair.color {
             background: #ffb6c1;
             border-radius: 50%;
             padding: 3px;
             text-align: center;
-            width: 25px;
+            width: 24px;
           }
           .hair.cut {
             background: #ffb6c1;
             border-radius: 50%;
             padding: 3px;
             text-align: center;
-            width: 25px;
+            width: 24px;
           }
           .clarifying {
             background: #ffb6c1;
             border-radius: 50%;
             padding: 3px;
             text-align: center;
-            width: 25px;
+            width: 24px;
           }
         }
       }

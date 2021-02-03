@@ -8,6 +8,7 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
   const [active, setActive] = useState(item);
   const [newIndex, setNewIndex] = useState(selectedIndex);
+
   const nextTile = () => {
     if (items.responseobjects[0].posts[newIndex - 2] != undefined) {
       setActive(items.responseobjects[0].posts[newIndex - 1]);
@@ -15,6 +16,7 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
     }
     return;
   };
+
   const prevTile = () => {
     if (items.responseobjects[0].posts[newIndex + 2] != undefined) {
       setActive(items.responseobjects[0].posts[newIndex + 1]);
@@ -22,6 +24,7 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
     }
     return;
   };
+
   return (
     <div className={showHideClassName}>
       <section className="modal-main">
@@ -48,7 +51,6 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
                     alt="previous tile"
                     className="side-tile-image"
                   />
-
                   <div className="side-content">
                     <div className="legend-rating-wrapper">
                       {items.responseobjects[0].posts[

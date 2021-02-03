@@ -7,16 +7,16 @@ import { payload } from './utils/Payload';
 import axios from 'axios';
 
 const App = () => {
-  const [activeMonth, setactiveMonth] = useState(0);
-  const [items, setitems] = useState([]);
-  const [loading, setloading] = useState(true);
+  const [activeMonth, setActiveMonth] = useState(0);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .post('https://devapi.quinn.care/graph', payload)
       .then(response => {
-        setitems(response.data);
-        setloading(false);
+        setItems(response.data);
+        setLoading(false);
       })
       .catch(error => console.log(error.message));
   }, []);
@@ -37,7 +37,7 @@ const App = () => {
           </nav>
           <div className="wrapper">
             <Calendar
-              setActiveMonth={setactiveMonth}
+              setActiveMonth={setActiveMonth}
               activeMonth={activeMonth}
               items={items}
             />

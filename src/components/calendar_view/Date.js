@@ -44,18 +44,20 @@ const Date = ({ value, day, month, active, items }) => {
             ) : null
           )}
           <div></div>
-          <div className={`text ${dateStyle ? 'active' : ''}`}>{value}</div>
-          {value === 1 ? (
-            <div
-              className={`month ${
-                DATE.getMonth() === month - 1 ? 'month-active' : ''
-              }`}
-            >
-              {MONTH[month - 1] === undefined
-                ? ''
-                : MONTH[month - 1].substr(0, 3)}
-            </div>
-          ) : null}
+          <div className={`text ${dateStyle ? 'active' : ''}`}>
+            {value}
+            {value === 1 ? (
+              <span
+                className={`month ${
+                  DATE.getMonth() === month - 1 ? 'month-active' : ''
+                }`}
+              >
+                {MONTH[month - 1] === undefined
+                  ? ''
+                  : MONTH[month - 1].substr(0, 3)}
+              </span>
+            ) : null}
+          </div>
         </div>
         {items.responseobjects[0].posts.map((post, index) =>
           moment(post.calendardatetime).format('l') == actual &&
