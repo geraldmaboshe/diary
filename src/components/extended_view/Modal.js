@@ -36,7 +36,7 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
         <div className="container">
           <div className="arrow-container">
             <button className="arrow-btn" onClick={prevTile}>
-              <GoArrowSmallLeft size={30} color="red" color="#ffffff" />
+              <GoArrowSmallLeft size={30} color="#ffffff" />
             </button>
           </div>
           <div className="side-tile">
@@ -45,32 +45,34 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
                 <>
                   <img
                     src={
-                      items.responseobjects[0].posts[newIndex + 1]?.images[0]
-                        .imageurl
+                      items.responseobjects[0].posts[newIndex + 1]?.media[0]
+                        .mediaurl
                     }
                     alt="previous tile"
                     className="side-tile-image"
                   />
                   <div className="side-content">
-                    <div className="legend-rating-wrapper">
-                      {items.responseobjects[0].posts[
-                        newIndex + 1
-                      ]?.typeofday.map(type => (
-                        <span className={type}>
-                          {type === 'protein treatment'
-                            ? 'Pr'
-                            : type === 'deep conditioning'
-                            ? 'DC'
-                            : type === 'hair color'
-                            ? 'HC'
-                            : type === 'hair cut'
-                            ? 'Cu'
-                            : type === 'clarifying'
-                            ? 'Cu'
-                            : ''}
-                        </span>
-                      ))}
-                      <div>
+                    <div className="row">
+                      <div className="col1">
+                        {items.responseobjects[0].posts[
+                          newIndex + 1
+                        ]?.typeofday.map(type => (
+                          <div className={type}>
+                            {type === 'protein treatment'
+                              ? 'Pr'
+                              : type === 'deep conditioning'
+                              ? 'DC'
+                              : type === 'hair color'
+                              ? 'HC'
+                              : type === 'clarifying'
+                              ? 'C'
+                              : type === 'hair cut'
+                              ? 'Cu'
+                              : null}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="col2">
                         <StarRating
                           value={
                             items.responseobjects[0].posts[newIndex + 1]?.rating
@@ -102,28 +104,30 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
           </div>
           <div className="active-tile">
             <img
-              src={active.images[0].imageurl}
+              src={active.media[0].mediaurl}
               alt="tile"
               className="active-tile-image"
             />
             <div className="content">
-              <div className="legend-rating-wrapper">
-                {active.typeofday.map(type => (
-                  <span className={type}>
-                    {type === 'protein treatment'
-                      ? 'Pr'
-                      : type === 'deep conditioning'
-                      ? 'DC'
-                      : type === 'hair color'
-                      ? 'HC'
-                      : type === 'hair cut'
-                      ? 'Cu'
-                      : type === 'clarifying'
-                      ? 'C'
-                      : null}
-                  </span>
-                ))}
-                <div>
+              <div className="row">
+                <div className="col1">
+                  {active.typeofday.map(type => (
+                    <div className={type}>
+                      {type === 'clarifying'
+                        ? 'C'
+                        : type === 'protein treatment'
+                        ? 'Pr'
+                        : type === 'deep conditioning'
+                        ? 'DC'
+                        : type === 'hair color'
+                        ? 'HC'
+                        : type === 'hair cut'
+                        ? 'Cu'
+                        : null}
+                    </div>
+                  ))}
+                </div>
+                <div className="col2">
                   <StarRating
                     value={items.responseobjects[0].posts[newIndex + 1]?.rating}
                     size={20}
@@ -147,32 +151,34 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
                 <>
                   <img
                     src={
-                      items.responseobjects[0].posts[newIndex - 1]?.images[0]
-                        .imageurl
+                      items.responseobjects[0].posts[newIndex - 1]?.media[0]
+                        .mediaurl
                     }
                     className="side-tile-image"
                     alt="next tile"
                   />
                   <div className="side-content">
-                    <div className="legend-rating-wrapper">
-                      {items.responseobjects[0].posts[
-                        newIndex - 1
-                      ]?.typeofday.map(type => (
-                        <span className={type}>
-                          {type === 'protein treatment'
-                            ? 'Pr'
-                            : type === 'deep conditioning'
-                            ? 'DC'
-                            : type === 'hair color'
-                            ? 'HC'
-                            : type === 'hair cut'
-                            ? 'Cu'
-                            : type === 'clarifying'
-                            ? 'Cu'
-                            : ''}
-                        </span>
-                      ))}
-                      <div>
+                    <div className="row">
+                      <div className="col1">
+                        {items.responseobjects[0].posts[
+                          newIndex - 1
+                        ]?.typeofday.map(type => (
+                          <div className={type}>
+                            {type === 'clarifying'
+                              ? 'C'
+                              : type === 'protein treatment'
+                              ? 'Pr'
+                              : type === 'deep conditioning'
+                              ? 'DC'
+                              : type === 'hair color'
+                              ? 'HC'
+                              : type === 'hair cut'
+                              ? 'Cu'
+                              : null}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="col2">
                         <StarRating
                           value={
                             items.responseobjects[0].posts[newIndex - 1]?.rating
@@ -212,4 +218,5 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
     </div>
   );
 };
+
 export default Modal;

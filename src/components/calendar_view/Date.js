@@ -36,9 +36,9 @@ const Date = ({ value, day, month, active, items }) => {
         <div className="box-header">
           {items.responseobjects[0].posts.map((post, index) =>
             moment(post.calendardatetime).format('l') == actual &&
-            moment(post.calendardatetime).format('l') !==
+            moment(post.calendardatetime).format('l') !=
               moment(
-                items.responseobjects[0].posts[index + 1]?.calendardatetime
+                items.responseobjects[0].posts[index - 1]?.calendardatetime
               ).format('l') ? (
               <StarRating value={post?.rating} size={15} />
             ) : null
@@ -61,22 +61,24 @@ const Date = ({ value, day, month, active, items }) => {
         </div>
         {items.responseobjects[0].posts.map((post, index) =>
           moment(post.calendardatetime).format('l') == actual &&
-          moment(post.calendardatetime).format('l') !==
+          moment(post.calendardatetime).format('l') !=
             moment(
-              items.responseobjects[0].posts[index + 1]?.calendardatetime
+              items.responseobjects[0].posts[index - 1]?.calendardatetime
             ).format('l') ? (
             <>
               <div className="box-header"></div>
               <div onClick={showModal}>
                 <img
-                  src={post.images[0].imageurl}
+                  src={post.media[0].mediaurl}
                   alt="tile"
                   className="calendar-tile-image"
                 />
                 <div className="legend">
                   {post.typeofday.map(type => (
                     <div className={type}>
-                      {type === 'protein treatment'
+                      {type === 'clarifying'
+                        ? 'C'
+                        : type === 'protein treatment'
                         ? 'Pr'
                         : type === 'deep conditioning'
                         ? 'DC'
@@ -84,8 +86,6 @@ const Date = ({ value, day, month, active, items }) => {
                         ? 'HC'
                         : type === 'hair cut'
                         ? 'Cu'
-                        : type === 'clarifying'
-                        ? 'C'
                         : null}
                     </div>
                   ))}

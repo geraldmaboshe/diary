@@ -14,7 +14,7 @@ export const payload = {
           searchvalues: ['true'],
           return: true
         },
-        images: {
+        media: {
           return: true
         },
         rating: {

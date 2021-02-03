@@ -31,6 +31,7 @@ const Month = props => {
       }
     }
   }, []);
+
   return (
     <div className="months" id={MONTH[props.mid]} ref={monthRef}>
       {props.children}
