@@ -26,7 +26,7 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
 
   const prevTile = () => {
     if (items.responseobjects[0].posts[newIndex + 2] != undefined) {
-      setActive(items.responseobjects[0].posts[selectedIndex + 1]);
+      setActive(items.responseobjects[0].posts[newIndex + 1]);
       setNewIndex(newIndex + 1);
     }
     return;
@@ -111,7 +111,7 @@ const Modal = ({ handleClose, show, item, items, selectedIndex }) => {
           </div>
           <div className="active-tile">
             <img
-              src={active.media[0].mediaurl}
+              src={active.media[0]?.mediaurl}
               alt="tile"
               className="active-tile-image"
             />
